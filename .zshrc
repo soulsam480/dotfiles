@@ -2,9 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/zoro/.oh-my-zsh"
+export ZSH="/home/sambit/.oh-my-zsh"
 # Load and initialize the completion system ignoring insecure directories.
-autoload -Uz compinit && compinit -i
+# autoload -Uz compinit && compinit -i
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -72,9 +72,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-plugins=(git zsh-autosuggestions yarn nvm node npm zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions yarn node npm zsh-syntax-highlighting fzf fzf-tab asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -155,21 +153,27 @@ alias psv='pnpm server'
 # pnpx
 alias px='pnpm dlx'
 
-timezsh() {
-  shell=${1-$SHELL}
-  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
+alias warp='warp-cli'
+alias w-con='warp-cli connect'
+alias w-dis='warp-cli disconnect'
+
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-export NVM_DIR="$HOME/.nvm"
 export PATH="/usr/share/code/bin:$PATH"
 export PATH="$(yarn global bin):$PATH"
 # export PATH=$PATH:$(go env GOPATH)/bin 
 # export ANDROID_HOME="$HOME/Android/Sdk"
 # export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 # PATH=$PATH:$ANDROID_SDK_ROOT/tools; PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+# fnm
+export PATH=/home/sambit/.fnm:$PATH
+eval "`fnm env`"
+eval "$(fnm env --use-on-cd)"
 
 eval "$(starship init zsh)"
